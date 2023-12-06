@@ -8,6 +8,7 @@
   import ConditionalRendering from './tutorials/conditional_rendering.vue'
   import ListRendering from './tutorials/list_rendering.vue'
   import ComputedProperty from './tutorials/computed_property.vue'
+  import LifecycleTemplateRefs from './tutorials/lifecycle_template_refs.vue'
 </script>
 
 <template>
@@ -29,6 +30,7 @@
   <ConditionalRendering />
   <ListRendering />
   <ComputedProperty />
+  <LifecycleTemplateRefs />
 </template>
 
 <style scoped>
