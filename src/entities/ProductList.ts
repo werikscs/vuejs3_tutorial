@@ -1,23 +1,23 @@
 class ProductList {
-  products = []
+  products: {name: string}[] = []
 
   getProducts() {
     return this.products
   }
 
-  addProduct(newProduct){
+  addProduct(newProduct: {name: string}){
     this.products.push(newProduct)
   }
 
-  getProductByName(productName){
+  getProductByName(productName: string){
     return this.products.find((p) => p.name === productName )
   }
 
-  deleteProductByName(productName) {
+  deleteProductByName(productName: string) {
     this.products = this.products.filter((p) => p.name !== productName)
   }
 
-  updateProductByName(currentName, newName) {
+  updateProductByName(currentName:string, newName: string) {
     let currentProduct = null
     const currentProductIndex = this.products.findIndex((p) => {
       if(p.name === currentName){
@@ -26,7 +26,7 @@ class ProductList {
       }
     })
 
-    this.products[currentProductIndex] = {...currentProduct, name: newName}
+    this.products[currentProductIndex] = { ...currentProduct, name: newName }
   }
 }
 
