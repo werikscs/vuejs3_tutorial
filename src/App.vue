@@ -6,6 +6,7 @@
   import EventListeners from './tutorials/event_listeners.vue'
   import FormBindings from './tutorials/form_bindings.vue'
   import ConditionalRendering from './tutorials/conditional_rendering.vue'
+  import ListRendering from './tutorials/list_rendering.vue'
 </script>
 
 <template>
@@ -25,6 +26,7 @@
   <EventListeners />
   <FormBindings />
   <ConditionalRendering />
+  <ListRendering />
 </template>
 
 <style scoped>
