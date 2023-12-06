@@ -9,6 +9,7 @@
   import ListRendering from './tutorials/list_rendering.vue'
   import ComputedProperty from './tutorials/computed_property.vue'
   import LifecycleTemplateRefs from './tutorials/lifecycle_template_refs.vue'
+  import Watchers from './tutorials/watchers.vue'
 </script>
 
 <template>
@@ -31,19 +32,20 @@
   <ListRendering />
   <ComputedProperty />
   <LifecycleTemplateRefs />
+  <Watchers />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
+  .logo {
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+  }
+  .logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+  .logo.vue:hover {
+    filter: drop-shadow(0 0 2em #42b883aa);
+  }
 </style>
