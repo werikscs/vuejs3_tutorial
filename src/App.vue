@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+  import HelloWorld from './components/HelloWorld.vue'
+  import HelloWorldTutorial from './tutorials/hello_world.vue'
+  import DeclarativeRendering from './tutorials/declarative_rendering.vue'
 </script>
 
 <template>
@@ -12,6 +14,9 @@ import HelloWorld from './components/HelloWorld.vue'
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+  <h1>---Tutorials---</h1>
+  <HelloWorldTutorial />
+  <DeclarativeRendering />
 </template>
 
 <style scoped>
