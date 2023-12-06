@@ -7,6 +7,7 @@
   import FormBindings from './tutorials/form_bindings.vue'
   import ConditionalRendering from './tutorials/conditional_rendering.vue'
   import ListRendering from './tutorials/list_rendering.vue'
+  import ComputedProperty from './tutorials/computed_property.vue'
 </script>
 
 <template>
@@ -27,6 +28,7 @@
   <FormBindings />
   <ConditionalRendering />
   <ListRendering />
+  <ComputedProperty />
 </template>
 
 <style scoped>

@@ -1,3 +1,5 @@
+<!-- https://vuejs.org/tutorial/#step-7 -->
+
 <script setup lang="ts">
 import { ref } from 'vue'
 
