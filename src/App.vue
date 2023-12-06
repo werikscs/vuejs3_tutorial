@@ -4,7 +4,8 @@
   import DeclarativeRendering from './tutorials/declarative_rendering.vue'
   import AttributeBindings from './tutorials/attribute_bindings.vue'
   import EventListeners from './tutorials/event_listeners.vue'
-import FormBindings from './tutorials/form_bindings.vue'
+  import FormBindings from './tutorials/form_bindings.vue'
+  import ConditionalRendering from './tutorials/conditional_rendering.vue'
 </script>
 
 <template>
@@ -23,6 +24,7 @@ import FormBindings from './tutorials/form_bindings.vue'
   <AttributeBindings />
   <EventListeners />
   <FormBindings />
+  <ConditionalRendering />
 </template>
 
 <style scoped>
