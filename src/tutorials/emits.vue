@@ -7,3 +7,8 @@
   // emit with argument
   emit('res', 'hello from child')
 </script>
+
+<template>
+  <h2>13 - Emits</h2>
+  <h3>Child component</h3>
+</template>
