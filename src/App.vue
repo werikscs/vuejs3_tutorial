@@ -2,6 +2,7 @@
   import HelloWorld from './components/HelloWorld.vue'
   import HelloWorldTutorial from './tutorials/hello_world.vue'
   import DeclarativeRendering from './tutorials/declarative_rendering.vue'
+  import AttributeBindings from './tutorials/attribute_bindings.vue'
 </script>
 
 <template>
@@ -17,6 +18,7 @@
   <h1>---Tutorials---</h1>
   <HelloWorldTutorial />
   <DeclarativeRendering />
+  <AttributeBindings />
 </template>
 
 <style scoped>

@@ -6,9 +6,6 @@
 
   const msg = ref('Hello World!')
   const counter = reactive({count: 0})
-
-// component logic
-// declare some reactive state here.
 </script>
 
 <template>
