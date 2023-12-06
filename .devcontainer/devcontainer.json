@@ -25,9 +25,7 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"dbaeumer.vscode-eslint",
 				"eamodio.gitlens",
-				"esbenp.prettier-vscode",
 				"GitHub.copilot",
 				"ms-azuretools.vscode-docker",
 				"Vue.volar",
