@@ -3,7 +3,7 @@
 
 <template>
   <router-link to="/">
-    Home
+    Product List
   </router-link>
   <router-link to="/product-manager">
     Product Manager

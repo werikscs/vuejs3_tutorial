@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Home from './Home.vue';
+import Home from './ProductList.vue';
 import ProductManager from './ProductManager.vue';
 
 </script>
