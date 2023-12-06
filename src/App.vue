@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import { ref } from 'vue'
+  
   import HelloWorld from './components/HelloWorld.vue'
   import HelloWorldTutorial from './tutorials/hello_world.vue'
   import DeclarativeRendering from './tutorials/declarative_rendering.vue'
@@ -10,6 +12,10 @@
   import ComputedProperty from './tutorials/computed_property.vue'
   import LifecycleTemplateRefs from './tutorials/lifecycle_template_refs.vue'
   import Watchers from './tutorials/watchers.vue'
+  import Emits from './tutorials/emits.vue'
+
+  // 13 - Emits
+  const childArg = ref('No child msg yet')
 </script>
 
 <template>
@@ -33,6 +39,11 @@
   <ComputedProperty />
   <LifecycleTemplateRefs />
   <Watchers />
+  <div>
+    <h2>13 - Emits</h2>
+    <Emits @res="(arg) => childArg = arg"/>
+    <p>{{ childArg }}</p>
+  </div>
 </template>
 
 <style scoped>
