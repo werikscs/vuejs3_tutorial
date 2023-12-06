@@ -3,6 +3,7 @@
   import HelloWorldTutorial from './tutorials/hello_world.vue'
   import DeclarativeRendering from './tutorials/declarative_rendering.vue'
   import AttributeBindings from './tutorials/attribute_bindings.vue'
+  import EventListeners from './tutorials/event_listeners.vue'
 </script>
 
 <template>
@@ -19,6 +20,7 @@
   <HelloWorldTutorial />
   <DeclarativeRendering />
   <AttributeBindings />
+  <EventListeners />
 </template>
 
 <style scoped>
