@@ -1,39 +1,40 @@
 {
-	"name": "vuejs3_tutorial",
+  "name": "vuejs3_tutorial",
   "build": {
     "dockerfile": "Dockerfile"
   },
-	"features": {
-		"ghcr.io/devcontainers/features/common-utils:2": {
-			"installZsh": true,
-			"configureZshAsDefaultShell": true,
-			"installOhMyZsh": true,
-			"installOhMyZshConfig": true,
-			"upgradePackages": true,
-			"username": "node",
-			"userUid": "automatic",
-			"userGid": "automatic"
-		},
-		"ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {
-			"plugins": "F-Sy-H zsh-completions zsh-autosuggestions",
-			"omzPlugins": "https://github.com/z-shell/F-Sy-H https://github.com/zsh-users/zsh-completions.git https://github.com/zsh-users/zsh-autosuggestions.git"
-		},
-		"ghcr.io/stuartleeks/dev-container-features/shell-history:0": {}
-	},
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"eamodio.gitlens",
-				"GitHub.copilot",
-				"ms-azuretools.vscode-docker",
-				"Vue.volar",
-				"Vue.vscode-typescript-vue-plugin"
-			]
-		}
-	},
-	// "postCreateCommand": "npm install"
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "installOhMyZsh": true,
+      "installOhMyZshConfig": true,
+      "upgradePackages": true,
+      "username": "node",
+      "userUid": "automatic",
+      "userGid": "automatic"
+    },
+    "ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {
+      "plugins": "F-Sy-H zsh-completions zsh-autosuggestions",
+      "omzPlugins": "https://github.com/z-shell/F-Sy-H https://github.com/zsh-users/zsh-completions.git https://github.com/zsh-users/zsh-autosuggestions.git"
+    },
+    "ghcr.io/stuartleeks/dev-container-features/shell-history:0": {}
+  },
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "eamodio.gitlens",
+        "GitHub.copilot",
+        "ms-azuretools.vscode-docker",
+        "Vue.volar",
+        "Vue.vscode-typescript-vue-plugin",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "postCreateCommand": "npm install"
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
 }
