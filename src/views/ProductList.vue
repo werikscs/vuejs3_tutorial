@@ -31,7 +31,13 @@ onMounted(async () => {
   <h1>Product List</h1>
   <form @submit.prevent="searchProduct">
     <input data-test="search-input" type="text" v-model="searchInput">
-    <button data-test="search-button" type="submit">Search</button>
+    <button
+      data-test="search-button"
+      type="submit" 
+      v-bind:disabled="localProducts.length === 0 && !isSearching"
+    >
+      Search
+    </button>
   </form>
   <span data-test="empty-list" v-if="localProducts.length === 0 && !isSearching">
     Empty list

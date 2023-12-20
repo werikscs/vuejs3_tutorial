@@ -181,7 +181,11 @@ it("should display the full list of products when the search is empty and the pr
 it("should clear the search input when the search button is clicked", async () => {
   const productsGateway: ProductsGateway = {
     async getProducts() {
-      return [];
+      return [
+        { name: "HP Pavilion 15-DK1056WM" },
+        { name: "Huawei P30" },
+        { name: "OPPOF19" },
+      ];
     },
   };
 
@@ -199,3 +203,22 @@ it("should clear the search input when the search button is clicked", async () =
   const searchInput = wrapper.find('[data-test="search-input"]');
   expect((searchInput.element as HTMLInputElement).value).toBe("");
 });
+
+it("should disable search button if list is empty", async () => {
+  const productsGateway: ProductsGateway = {
+    async getProducts() {
+      return [];
+    },
+  };
+
+  const wrapper = mount(ProductListView, {
+    global: {
+      provide: {
+        productsGateway,
+      },
+    },
+    attachTo: document.body,
+  });
+  const searchButton = wrapper.find('[data-test="search-button"]');
+  expect((searchButton.element as HTMLButtonElement).disabled).toBe(true);
+})
