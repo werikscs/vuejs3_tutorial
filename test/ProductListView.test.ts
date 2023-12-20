@@ -177,3 +177,25 @@ it("should display the full list of products when the search is empty and the pr
   await wrapper.find('[data-test="search-button"]').trigger("click");
   expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(3);
 });
+
+it("should clear the search input when the search button is clicked", async () => {
+  const productsGateway: ProductsGateway = {
+    async getProducts() {
+      return [];
+    },
+  };
+
+  const wrapper = mount(ProductListView, {
+    global: {
+      provide: {
+        productsGateway,
+      },
+    },
+    attachTo: document.body,
+  });
+
+  await wrapper.find('[data-test="search-input"]').setValue("OPPOF19");
+  await wrapper.find('[data-test="search-button"]').trigger("click");
+  const searchInput = wrapper.find('[data-test="search-input"]');
+  expect((searchInput.element as HTMLInputElement).value).toBe("");
+});

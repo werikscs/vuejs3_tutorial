@@ -3,19 +3,20 @@ import { inject, onMounted, ref } from 'vue';
 import ProductsGateway from '../infra/ProductsGateway'
 import ProductList from '../entities/ProductList';
 
-const productList = new ProductList()
-const searchInput = ref('')
+let searchInput = ""
+let isSearching = false
 const localProducts = ref([])
-const isSearching = ref(false)
+const productList = new ProductList()
 
 function searchProduct() {
-  if (searchInput.value === "") {
+  if (searchInput === "") {
     localProducts.value = productList.getProducts()
     return
   }
-  const productFound = productList.getProductByName(searchInput.value)
+  const productFound = productList.getProductByName(searchInput)
   localProducts.value = productFound ? [productFound] : []
-  isSearching.value = true
+  isSearching = true
+  searchInput = ""
 }
 
 onMounted(async () => {
