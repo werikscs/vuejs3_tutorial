@@ -6,10 +6,12 @@ import ProductList from '../entities/ProductList';
 const productList = new ProductList()
 const searchInput = ref('')
 const localProducts = ref([])
+const isSearching = ref(false)
 
 function searchProduct() {
   const productFound = productList.getProductByName(searchInput.value)
   localProducts.value = productFound ? [productFound] : []
+  isSearching.value = true
 }
 
 onMounted(async () => {
@@ -26,11 +28,20 @@ onMounted(async () => {
     <input data-test="search-input" type="text" v-model="searchInput">
     <button data-test="search-button" type="submit">Search</button>
   </form>
+  <span
+    data-test="empty-list"
+    v-if="localProducts.length === 0 && !isSearching"
+  >
+    Empty list
+  </span>
   <ul data-test="product-list" v-for="product in localProducts">
     <li data-test="product-list-item">{{ product.name }}</li>
   </ul>
-  <span data-test="product-not-found">
-    <p v-if="localProducts.length === 0">Product not found</p>
+  <span
+    data-test="product-not-found"
+    v-if="localProducts.length === 0 && isSearching"
+  >
+    Product not found
   </span>
 </template>
 

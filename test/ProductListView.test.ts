@@ -45,7 +45,7 @@ it("should display a list with 4 products", async () => {
     },
     attachTo: document.body,
   });
-  
+
   await flushPromises();
   expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(4);
 });
@@ -95,8 +95,32 @@ it("should display a message when no product is found", async () => {
     attachTo: document.body,
   });
 
-  await wrapper.find('[data-test="search-input"]').setValue("Samsung Universe 9");
+  await wrapper
+    .find('[data-test="search-input"]')
+    .setValue("Samsung Universe 9");
   await wrapper.find('[data-test="search-button"]').trigger("click");
   expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(0);
   expect(wrapper.find('[data-test="product-not-found"]').exists()).toBe(true);
-})
+  expect(wrapper.find('[data-test="empty-list"]').exists()).toBe(false);
+});
+
+it("should display a message if the list of products is empty", async () => {
+  const productsGateway: ProductsGateway = {
+    async getProducts() {
+      return [];
+    },
+  };
+
+  const wrapper = mount(ProductListView, {
+    global: {
+      provide: {
+        productsGateway,
+      },
+    },
+    attachTo: document.body,
+  });
+
+  expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(0);
+  expect(wrapper.find('[data-test="empty-list"]').exists()).toBe(true);
+  expect(wrapper.find('[data-test="product-not-found"]').exists()).toBe(false);
+});
