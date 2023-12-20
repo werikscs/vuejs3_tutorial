@@ -47,7 +47,8 @@ it("should display a list with 4 products", async () => {
   });
 
   await flushPromises();
-  expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(4);
+  const productList = wrapper.findAll('[data-test="product-list-item"]');
+  expect(productList).toHaveLength(4);
 });
 
 it("should search a product and find it", async () => {
@@ -70,9 +71,12 @@ it("should search a product and find it", async () => {
     attachTo: document.body,
   });
 
-  await wrapper.find('[data-test="search-input"]').setValue("OPPOF19");
-  await wrapper.find('[data-test="search-button"]').trigger("click");
-  expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(1);
+  const searchInput = wrapper.find('[data-test="search-input"]');
+  const searchButton = wrapper.find('[data-test="search-button"]');
+  await searchInput.setValue("OPPOF19");
+  await searchButton.trigger("click");
+  const productList = wrapper.findAll('[data-test="product-list-item"]');
+  expect(productList).toHaveLength(1);
 });
 
 it("should display a message when no product is found", async () => {
@@ -95,13 +99,16 @@ it("should display a message when no product is found", async () => {
     attachTo: document.body,
   });
 
-  await wrapper
-    .find('[data-test="search-input"]')
-    .setValue("Samsung Universe 9");
-  await wrapper.find('[data-test="search-button"]').trigger("click");
-  expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(0);
-  expect(wrapper.find('[data-test="product-not-found"]').exists()).toBe(true);
-  expect(wrapper.find('[data-test="empty-list"]').exists()).toBe(false);
+  const searchInput = wrapper.find('[data-test="search-input"]');
+  const searchButton = wrapper.find('[data-test="search-button"]');
+  await searchInput.setValue("Samsung Universe 9");
+  await searchButton.trigger("click");
+  const productList = wrapper.findAll('[data-test="product-list-item"]');
+  const productNotFound = wrapper.find('[data-test="product-not-found"]');
+  const emptyList = wrapper.find('[data-test="empty-list"]');
+  expect(productList).toHaveLength(0);
+  expect(productNotFound.exists()).toBe(true);
+  expect(emptyList.exists()).toBe(false);
 });
 
 it("should display a message if the list of products is empty", async () => {
@@ -120,9 +127,12 @@ it("should display a message if the list of products is empty", async () => {
     attachTo: document.body,
   });
 
-  expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(0);
-  expect(wrapper.find('[data-test="empty-list"]').exists()).toBe(true);
-  expect(wrapper.find('[data-test="product-not-found"]').exists()).toBe(false);
+  const productList = wrapper.findAll('[data-test="product-list-item"]');
+  const productNotFound = wrapper.find('[data-test="product-not-found"]');
+  const emptyList = wrapper.find('[data-test="empty-list"]');
+  expect(productList).toHaveLength(0);
+  expect(emptyList.exists()).toBe(true);
+  expect(productNotFound.exists()).toBe(false);
 });
 
 it("should display the full list of products when the search is empty", async () => {
@@ -145,9 +155,12 @@ it("should display the full list of products when the search is empty", async ()
     attachTo: document.body,
   });
 
-  await wrapper.find('[data-test="search-input"]').setValue("");
-  await wrapper.find('[data-test="search-button"]').trigger("click");
-  expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(3);
+  const searchInput = wrapper.find('[data-test="search-input"]');
+  const searchButton = wrapper.find('[data-test="search-button"]');
+  await searchInput.setValue("");
+  await searchButton.trigger("click");
+  const productList = wrapper.findAll('[data-test="product-list-item"]');
+  expect(productList).toHaveLength(3);
 });
 
 it("should display the full list of products when the search is empty and the products showing is the result of a search", async () => {
@@ -170,12 +183,16 @@ it("should display the full list of products when the search is empty and the pr
     attachTo: document.body,
   });
 
-  await wrapper.find('[data-test="search-input"]').setValue("OPPOF19");
-  await wrapper.find('[data-test="search-button"]').trigger("click");
-  expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(1);
-  await wrapper.find('[data-test="search-input"]').setValue("");
-  await wrapper.find('[data-test="search-button"]').trigger("click");
-  expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(3);
+  const searchInput = wrapper.find('[data-test="search-input"]');
+  const searchButton = wrapper.find('[data-test="search-button"]');
+  await searchInput.setValue("OPPOF19");
+  await searchButton.trigger("click");
+  const productList = wrapper.findAll('[data-test="product-list-item"]');
+  expect(productList).toHaveLength(1);
+  await searchInput.setValue("");
+  await searchButton.trigger("click");
+  const newProductList = wrapper.findAll('[data-test="product-list-item"]');
+  expect(newProductList).toHaveLength(3);
 });
 
 it("should clear the search input when the search button is clicked", async () => {
@@ -198,9 +215,10 @@ it("should clear the search input when the search button is clicked", async () =
     attachTo: document.body,
   });
 
-  await wrapper.find('[data-test="search-input"]').setValue("OPPOF19");
-  await wrapper.find('[data-test="search-button"]').trigger("click");
   const searchInput = wrapper.find('[data-test="search-input"]');
+  const searchButton = wrapper.find('[data-test="search-button"]');
+  await searchInput.setValue("OPPOF19");
+  await searchButton.trigger("click");
   expect((searchInput.element as HTMLInputElement).value).toBe("");
 });
 
@@ -221,4 +239,4 @@ it("should disable search button if list is empty", async () => {
   });
   const searchButton = wrapper.find('[data-test="search-button"]');
   expect((searchButton.element as HTMLButtonElement).disabled).toBe(true);
-})
+});
