@@ -149,3 +149,31 @@ it("should display the full list of products when the search is empty", async ()
   await wrapper.find('[data-test="search-button"]').trigger("click");
   expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(3);
 });
+
+it("should display the full list of products when the search is empty and the products showing is the result of a search", async () => {
+  const productsGateway: ProductsGateway = {
+    async getProducts() {
+      return [
+        { name: "HP Pavilion 15-DK1056WM" },
+        { name: "Huawei P30" },
+        { name: "OPPOF19" },
+      ];
+    },
+  };
+
+  const wrapper = mount(ProductListView, {
+    global: {
+      provide: {
+        productsGateway,
+      },
+    },
+    attachTo: document.body,
+  });
+
+  await wrapper.find('[data-test="search-input"]').setValue("OPPOF19");
+  await wrapper.find('[data-test="search-button"]').trigger("click");
+  expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(1);
+  await wrapper.find('[data-test="search-input"]').setValue("");
+  await wrapper.find('[data-test="search-button"]').trigger("click");
+  expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(3);
+});

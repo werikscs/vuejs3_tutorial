@@ -9,8 +9,10 @@ const localProducts = ref([])
 const isSearching = ref(false)
 
 function searchProduct() {
-  console.log(searchInput)
-  if (searchInput.value === "") return productList.getProducts()
+  if (searchInput.value === "") {
+    localProducts.value = productList.getProducts()
+    return
+  }
   const productFound = productList.getProductByName(searchInput.value)
   localProducts.value = productFound ? [productFound] : []
   isSearching.value = true
