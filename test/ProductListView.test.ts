@@ -16,6 +16,7 @@ it("should display an empty list of products", async () => {
         productsGateway,
       },
     },
+    attachTo: document.body,
   });
 
   const productList = wrapper.find('[data-test="product-list"]');
@@ -42,9 +43,34 @@ it("should display a list with 4 products", async () => {
         productsGateway,
       },
     },
+    attachTo: document.body,
+  });
+  
+  await flushPromises();
+  expect(wrapper.findAll('[data-test="product"]')).toHaveLength(4);
+});
+
+it("should search a product and find it", async () => {
+  const productsGateway: ProductsGateway = {
+    async getProducts() {
+      return [
+        { name: "HP Pavilion 15-DK1056WM" },
+        { name: "Huawei P30" },
+        { name: "OPPOF19" },
+      ];
+    },
+  };
+
+  const wrapper = mount(ProductListView, {
+    global: {
+      provide: {
+        productsGateway,
+      },
+    },
+    attachTo: document.body,
   });
 
-  await flushPromises();
-  const product = wrapper.findAll('[data-test="product"]');
-  expect(product).toHaveLength(4);
+  await wrapper.find('[data-test="search-input"]').setValue("OPPOF19");
+  await wrapper.find('[data-test="search-button"]').trigger("click");
+  expect(wrapper.findAll('[data-test="product"]')).toHaveLength(1);
 });
