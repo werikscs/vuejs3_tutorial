@@ -124,3 +124,28 @@ it("should display a message if the list of products is empty", async () => {
   expect(wrapper.find('[data-test="empty-list"]').exists()).toBe(true);
   expect(wrapper.find('[data-test="product-not-found"]').exists()).toBe(false);
 });
+
+it("should display the full list of products when the search is empty", async () => {
+  const productsGateway: ProductsGateway = {
+    async getProducts() {
+      return [
+        { name: "HP Pavilion 15-DK1056WM" },
+        { name: "Huawei P30" },
+        { name: "OPPOF19" },
+      ];
+    },
+  };
+
+  const wrapper = mount(ProductListView, {
+    global: {
+      provide: {
+        productsGateway,
+      },
+    },
+    attachTo: document.body,
+  });
+
+  await wrapper.find('[data-test="search-input"]').setValue("");
+  await wrapper.find('[data-test="search-button"]').trigger("click");
+  expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(3);
+});
