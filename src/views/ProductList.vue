@@ -27,8 +27,11 @@ onMounted(async () => {
     <button data-test="search-button" type="submit">Search</button>
   </form>
   <ul data-test="product-list" v-for="product in localProducts">
-    <li data-test="product">{{ product.name }}</li>
+    <li data-test="product-list-item">{{ product.name }}</li>
   </ul>
+  <span data-test="product-not-found">
+    <p v-if="localProducts.length === 0">Product not found</p>
+  </span>
 </template>
 
 <style scoped></style>

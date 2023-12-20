@@ -20,7 +20,7 @@ it("should display an empty list of products", async () => {
   });
 
   const productList = wrapper.find('[data-test="product-list"]');
-  const product = wrapper.findAll('[data-test="product"]');
+  const product = wrapper.findAll('[data-test="product-list-item"]');
   expect(productList.exists()).toBe(false);
   expect(product).toHaveLength(0);
 });
@@ -47,7 +47,7 @@ it("should display a list with 4 products", async () => {
   });
   
   await flushPromises();
-  expect(wrapper.findAll('[data-test="product"]')).toHaveLength(4);
+  expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(4);
 });
 
 it("should search a product and find it", async () => {
@@ -72,5 +72,31 @@ it("should search a product and find it", async () => {
 
   await wrapper.find('[data-test="search-input"]').setValue("OPPOF19");
   await wrapper.find('[data-test="search-button"]').trigger("click");
-  expect(wrapper.findAll('[data-test="product"]')).toHaveLength(1);
+  expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(1);
 });
+
+it("should display a message when no product is found", async () => {
+  const productsGateway: ProductsGateway = {
+    async getProducts() {
+      return [
+        { name: "HP Pavilion 15-DK1056WM" },
+        { name: "Huawei P30" },
+        { name: "OPPOF19" },
+      ];
+    },
+  };
+
+  const wrapper = mount(ProductListView, {
+    global: {
+      provide: {
+        productsGateway,
+      },
+    },
+    attachTo: document.body,
+  });
+
+  await wrapper.find('[data-test="search-input"]').setValue("Samsung Universe 9");
+  await wrapper.find('[data-test="search-button"]').trigger("click");
+  expect(wrapper.findAll('[data-test="product-list-item"]')).toHaveLength(0);
+  expect(wrapper.find('[data-test="product-not-found"]').exists()).toBe(true);
+})
